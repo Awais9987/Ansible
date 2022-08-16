@@ -1,0 +1,13 @@
+--- #conditional playbook
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install apache server on ubunto fam
+      command: apt-get -y apache2
+      when: ansible_os_family == "Debian"
+
+    - name: install httpd server on ansible
+      command: yum install -y httpd
+      when: ansible_os_family == "Redhat"
